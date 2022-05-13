@@ -22,7 +22,7 @@ def page_candidate(x):
     page = ""
     for i in candidates_data:
         if x == i["id"]:
-            img_src = i["picture"] + "\n"
+            img_src = i["picture"]
             page += "Имя кандидата: " + i["name"] + "\n"
             page += "Позиция кандидата: " + i["position"] + "\n"
             page += "Навыки: " + i["skills"] + "\n" + "\n"
