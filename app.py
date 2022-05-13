@@ -22,11 +22,12 @@ def page_candidate(x):
     page = ""
     for i in candidates_data:
         if x == i["id"]:
+            img_src = i["picture"] + "\n"
             page += "Имя кандидата: " + i["name"] + "\n"
             page += "Позиция кандидата: " + i["position"] + "\n"
             page += "Навыки: " + i["skills"] + "\n" + "\n"
 
-    return "<pre>" + page + "</pre>"
+    return f"<img src = {img_src}>" + "\n" + "<pre>" + page + "</pre>"
 
 @app.route("/skills/<xx>")
 def page_skills(xx):
