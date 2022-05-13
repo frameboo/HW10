@@ -8,7 +8,8 @@ with open('candidates.json', encoding="utf-8") as f:
 def index():
     page = """"""
     for can in candidates_data:
-        page += f"""имя: {can["name"]} \n skills: {can["skills"]} \n"""
+        page += f"""имя: {can["name"]}<br> 
+        skills: {can["skills"]} <br>"""
     return page
 
 app = Flask(__name__)
