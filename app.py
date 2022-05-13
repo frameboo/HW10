@@ -4,22 +4,40 @@ from flask import Flask
 with open('candidates.json', encoding="utf-8") as f:
     candidates_data = json.load(f)
 
-
-def index():
-    page = """"""
-    for can in candidates_data:
-        page += f"""имя: {can["name"]}<br> 
-        skills: {can["skills"]} <br>"""
-    return page
-
 app = Flask(__name__)
+
 
 @app.route('/')
 def index_page():
-    return index()
+    page = ""
+    for c in candidates_data:
+        page += "Имя кандидата: " + c["name"] + "\n"
+        page += "Позиция кандидата: " + c["position"] + "\n"
+        page += "Навыки: " + c["skills"] + "\n" + "\n"
+    return "<pre>" + page + "</pre>"
 
-# def page_index():
-#     return (candidates_data)
+
+@app.route("/candidates/<int:x>")
+def page_candidate(x):
+    page = ""
+    for i in candidates_data:
+        if x == i["id"]:
+            page += "Имя кандидата: " + i["name"] + "\n"
+            page += "Позиция кандидата: " + i["position"] + "\n"
+            page += "Навыки: " + i["skills"] + "\n" + "\n"
+
+    return "<pre>" + page + "</pre>"
+
+@app.route("/skills/<xx>")
+def page_skills(xx):
+    page = ""
+    for i in candidates_data:
+        skil_list = i["skills"].lower().split(", ")
+        if xx.lower() in skil_list:
+            page += "Имя кандидата: " + i["name"] + "\n"
+            page += "Позиция кандидата: " + i["position"] + "\n"
+            page += "Навыки: " + i["skills"] + "\n" + "\n"
+    return "<pre>" + page + "</pre>"
 
 
 app.run()
